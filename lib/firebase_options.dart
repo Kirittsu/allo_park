@@ -10,9 +10,9 @@ import 'package:flutter/foundation.dart'
 /// ```dart
 /// import 'firebase_options.dart';
 /// // ...
-///  await Firebase.initializeApp(
-///    options: DefaultFirebaseOptions.currentPlatform,
-///  );
+/// await Firebase.initializeApp(
+///   options: DefaultFirebaseOptions.currentPlatform,
+/// );
 /// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
@@ -67,8 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '277709952366',
     projectId: 'allopark-81d0a',
     storageBucket: 'allopark-81d0a.appspot.com',
-    iosClientId:
-        '277709952366-cviv8455fb76cqkhla0mv5p3mjeh0fhd.apps.googleusercontent.com',
+    iosClientId: '277709952366-cviv8455fb76cqkhla0mv5p3mjeh0fhd.apps.googleusercontent.com',
     iosBundleId: 'com.example.alloPark',
   );
 
@@ -78,8 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '277709952366',
     projectId: 'allopark-81d0a',
     storageBucket: 'allopark-81d0a.appspot.com',
-    iosClientId:
-        '277709952366-cviv8455fb76cqkhla0mv5p3mjeh0fhd.apps.googleusercontent.com',
+    iosClientId: '277709952366-cviv8455fb76cqkhla0mv5p3mjeh0fhd.apps.googleusercontent.com',
     iosBundleId: 'com.example.alloPark',
   );
 }
