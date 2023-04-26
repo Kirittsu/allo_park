@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // Import the firebase_core and cloud_firestore plugin
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,20 +55,35 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  String locationaddress = "Pick location";
 
-  void _incrementCounter() {
-    CollectionReference test = FirebaseFirestore.instance.collection('test');
+  double get lat => 0;
+  set lat(double lat) {}
 
-    test
-        .add({
-          'full_name': "John Touhou",
-          'company': "Touhou Inc.",
-          'Age': _counter
-        })
-        .then((value) => print("User added"))
-        .catchError((error) => print("Failed to add user: $error"));
-    _counter++;
+  double get long => 0;
+  set long(double long) {}
+
+  void _showModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 600,
+            child: Center(
+                child: OpenStreetMapSearchAndPick(
+                    center: LatLong(lat, long),
+                    buttonColor: Colors.amber,
+                    buttonText: 'Set Current Location',
+                    onPicked: (pickedData) {
+                      Navigator.pop(context);
+                      setState(() {
+                        locationaddress = pickedData.address;
+                        lat = pickedData.latLong.latitude;
+                        long = pickedData.latLong.longitude;
+                      });
+                    })),
+          );
+        });
   }
 
   @override
@@ -79,46 +95,17 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(widget.title),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        body: Center(
+            child: Container(
+                child: InkWell(
+                    child: Text(locationaddress),
+                    onTap: () {
+                      _showModal(context);
+                    }))));
   }
 }
