@@ -8,19 +8,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'firebase_options.dart';
 
+// Database variable
 FirebaseFirestore database = FirebaseFirestore.instance;
 
+// Method to store data has to be async
 Test() async {
+  //initialize database
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // Test "file"
   final test = <String, String>{
     "name": "Los Angeles",
     "state": "CA",
     "country": "USA"
   };
 
+  // Actual push to database
   database
       .collection("cities")
       .doc("LA")
