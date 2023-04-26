@@ -5,6 +5,28 @@ import 'package:flutter/material.dart';
 // Import the firebase_core and cloud_firestore plugin
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'firebase_options.dart';
+
+FirebaseFirestore database = FirebaseFirestore.instance;
+
+Test() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final test = <String, String>{
+    "name": "Los Angeles",
+    "state": "CA",
+    "country": "USA"
+  };
+
+  database
+      .collection("cities")
+      .doc("LA")
+      .set(test)
+      .onError((error, stackTrace) => print("Error writing document: $error"));
+}
 
 void main() {
   runApp(const MyApp());
@@ -57,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    Test();
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
