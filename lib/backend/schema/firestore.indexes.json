@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "parkingSpots",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "reserver",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timeBegin",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
