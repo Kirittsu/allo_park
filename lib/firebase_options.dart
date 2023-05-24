@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '277709952366',
     projectId: 'allopark-81d0a',
     authDomain: 'allopark-81d0a.firebaseapp.com',
+    databaseURL: 'https://allopark-81d0a.firebasedatabase.app',
     storageBucket: 'allopark-81d0a.appspot.com',
     measurementId: 'G-5WT6ZFXE7V',
   );
@@ -67,7 +68,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '277709952366',
     projectId: 'allopark-81d0a',
     storageBucket: 'allopark-81d0a.appspot.com',
-    iosClientId: '277709952366-cviv8455fb76cqkhla0mv5p3mjeh0fhd.apps.googleusercontent.com',
+    iosClientId:
+        '277709952366-cviv8455fb76cqkhla0mv5p3mjeh0fhd.apps.googleusercontent.com',
     iosBundleId: 'com.example.alloPark',
   );
 
@@ -77,7 +79,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '277709952366',
     projectId: 'allopark-81d0a',
     storageBucket: 'allopark-81d0a.appspot.com',
-    iosClientId: '277709952366-cviv8455fb76cqkhla0mv5p3mjeh0fhd.apps.googleusercontent.com',
+    iosClientId:
+        '277709952366-cviv8455fb76cqkhla0mv5p3mjeh0fhd.apps.googleusercontent.com',
     iosBundleId: 'com.example.alloPark',
   );
 }
